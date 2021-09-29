@@ -33,6 +33,7 @@ namespace UserMaintenance
             this.lblFullName = new System.Windows.Forms.Label();
             this.listUsers = new System.Windows.Forms.ListBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
+            this.btnExport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -70,11 +71,22 @@ namespace UserMaintenance
             this.txtFullName.Size = new System.Drawing.Size(134, 22);
             this.txtFullName.TabIndex = 4;
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(325, 250);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(199, 38);
+            this.btnExport.TabIndex = 5;
+            this.btnExport.Text = "Fájlba írás";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 344);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.txtFullName);
             this.Controls.Add(this.listUsers);
             this.Controls.Add(this.lblFullName);
@@ -92,6 +104,7 @@ namespace UserMaintenance
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.ListBox listUsers;
         private System.Windows.Forms.TextBox txtFullName;
+        private System.Windows.Forms.Button btnExport;
     }
 }
 
