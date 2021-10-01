@@ -34,6 +34,7 @@ namespace UserMaintenance
             this.listUsers = new System.Windows.Forms.ListBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -73,7 +74,7 @@ namespace UserMaintenance
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(325, 250);
+            this.btnExport.Location = new System.Drawing.Point(325, 220);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(199, 38);
             this.btnExport.TabIndex = 5;
@@ -81,11 +82,22 @@ namespace UserMaintenance
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(325, 274);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(199, 41);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Törlés";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 344);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.txtFullName);
             this.Controls.Add(this.listUsers);
@@ -105,6 +117,7 @@ namespace UserMaintenance
         private System.Windows.Forms.ListBox listUsers;
         private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button button1;
     }
 }
 
