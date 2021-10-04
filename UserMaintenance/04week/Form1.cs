@@ -89,6 +89,26 @@ namespace _04week
              GetCell(2, 1),
              GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
             }
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            int lastRowID = xlSheet.UsedRange.Rows.Count;
+            Excel.Range teljesRange = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, headers.Length));
+            teljesRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            int lastColumnID = xlSheet.UsedRange.Columns.Count;
+            Excel.Range elsooszlopRange = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, 1));
+            elsooszlopRange.Font.Bold = true;
+            elsooszlopRange.Interior.Color = Color.LightYellow;
+
+            Excel.Range utolsooszlopRange = xlSheet.get_Range(GetCell(1, lastColumnID), GetCell(lastRowID, lastColumnID));
+            utolsooszlopRange.Interior.Color = Color.LightGreen;
         }
         private string GetCell(int x, int y)
         {
