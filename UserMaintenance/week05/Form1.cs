@@ -17,6 +17,7 @@ namespace week05
         PortfolioEntities context = new PortfolioEntities();
         List<Tick> Ticks;
         List<PortfolioItem> Portfolio = new List<PortfolioItem>();
+        List<decimal> Nyereségek = new List<decimal>();
 
         public Form1()
         {
@@ -25,7 +26,7 @@ namespace week05
             dataGridView1.DataSource = Ticks;
             CreatePortfolio();
 
-            List<decimal> Nyereségek = new List<decimal>();
+           
             int intervalum = 30;
             DateTime kezdőDátum = (from x in Ticks select x.TradingDay).Min();
             DateTime záróDátum = new DateTime(2016, 12, 30);
@@ -70,20 +71,16 @@ namespace week05
         private void button1_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            if (sfd.ShowDialog() != DialogResult.OK) return;
-            using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+            sfd.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                sw.Write("Időszak");
-                sw.Write(' ');
-                sw.Write("Nyereség");
-                sw.WriteLine();
-                foreach (var item in Portfolio)
+                using (StreamWriter sw = new StreamWriter(sfd.FileName))
                 {
-                    sw.Write(item.Volume);
-                    sw.Write(' ');
-                    sw.Write("érték");
-
-                    sw.WriteLine();
+                    sw.Write("Időszak\tNyereség\t");
+                    for (int i = 0; i < Nyereségek.Count; i++)
+                    {
+                        sw.WriteLine((i+1).ToString() + "\t" + Nyereségek[i]);
+                    }
                 }
             }
         }
