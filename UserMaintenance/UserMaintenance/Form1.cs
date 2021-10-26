@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserMaintenance.Entities;
 
+
 namespace UserMaintenance
 {
     public partial class Form1 : Form
@@ -27,6 +28,21 @@ namespace UserMaintenance
             listUsers.DataSource = users;
             listUsers.ValueMember = "ID";
             listUsers.DisplayMember = "FullName";
+
+            var mnbService = new MNBArfolyamServiceSoapClient();
+
+            var request = new GetExchangeRatesRequestBody()
+            {
+                currencyNames = "EUR",
+                startDate = "2020-01-01",
+                endDate = "2020-06-30"
+            };
+
+
+            var response = mnbService.GetExchangeRates(request);
+
+
+            var result = response.GetExchangeRatesResult;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
