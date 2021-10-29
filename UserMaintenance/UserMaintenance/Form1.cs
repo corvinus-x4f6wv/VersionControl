@@ -1,22 +1,27 @@
-﻿using System;
+﻿using _06week.MnbServiceReference;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using UserMaintenance.Entities;
-
+using _06week.Entities;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace UserMaintenance
 {
     public partial class Form1 : Form
     {
-      BindingList<User> users = new BindingList<User>();
-      
+        BindingList<User> users = new BindingList<User>();
+
+
         public Form1()
         {
             InitializeComponent();
@@ -29,22 +34,9 @@ namespace UserMaintenance
             listUsers.ValueMember = "ID";
             listUsers.DisplayMember = "FullName";
 
-            var mnbService = new MNBArfolyamServiceSoapClient();
-
-            var request = new GetExchangeRatesRequestBody()
-            {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
-            };
-
-
-            var response = mnbService.GetExchangeRates(request);
-
-
-            var result = response.GetExchangeRatesResult;
+          
         }
-
+       
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var u = new User()
