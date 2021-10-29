@@ -21,12 +21,27 @@ namespace _06week
         public Form1()
         {
             InitializeComponent();
+
             comboBox1.DataSource = currencies;
+            var mnbService = new MNBArfolyamServiceSoapClient();
+            GetCurrenciesRequestBody request = new GetCurrenciesRequestBody();
+            var response = mnbService.GetCurrencies(request);
+            string result = response.GetCurrenciesResult;
+            XmlDocument vxml = new XmlDocument();
+            vxml.LoadXml(result);
+            foreach (XmlElement item in vxml.DocumentElement.FirstChild.ChildNodes)
+            {
+                currencies.Add(item.InnerText);
+            }
+
             RefreshData();
         }
 
         private void RefreshData()
         {
+
+            if (comboBox1.SelectedItem == null) return;
+
             Rates.Clear();
             string xmlstring = Consume();
             LoadXML(xmlstring);
@@ -57,6 +72,7 @@ namespace _06week
                 RateData r = new RateData();
                 r.Date = DateTime.Parse(item.GetAttribute("date"));
                 XmlElement child = (XmlElement)item.FirstChild;
+                if (child == null) continue;
                 r.Currency = child.GetAttribute("curr");
                 r.Value = decimal.Parse(child.InnerText);
                 int unit = int.Parse(child.GetAttribute("unit"));
@@ -93,7 +109,7 @@ namespace _06week
 
         private void filterChanged(object sender, EventArgs e)
         {
-
+            RefreshData();
         }
     }
 }
