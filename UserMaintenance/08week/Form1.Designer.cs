@@ -100,7 +100,7 @@ namespace _08week
             this.btnPresent.TabIndex = 4;
             this.btnPresent.Text = "PRESENT";
             this.btnPresent.UseVisualStyleBackColor = false;
-            this.btnPresent.Click += new System.EventHandler(this.btnPresent_Click);
+            this.btnPresent.Click += new System.EventHandler(this.button1_Click);
             // 
             // button1
             // 

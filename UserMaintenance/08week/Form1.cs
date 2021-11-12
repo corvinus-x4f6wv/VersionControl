@@ -79,7 +79,10 @@ namespace _08week
 
         private void btnBall_Click(object sender, EventArgs e)
         {
-            ToyFactory = new BallFactory();
+            ToyFactory = new BallFactory
+            {
+                BallColor = button1.BackColor
+            };
         }
         private void DisplayNext()
         {
@@ -92,13 +95,14 @@ namespace _08week
             this.Controls.Add(_nextToy);
         }
 
-        private void btnPresent_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            ToyFactory = new PresentFactory
+            {
+                BoxColor = button1.BackColor,
+                RibbonColor = Color.White
+            };
+
             var button = (Button)sender;
             var colorPicker = new ColorDialog();
 
