@@ -36,6 +36,8 @@ namespace _08week
             this.btnCar = new System.Windows.Forms.Button();
             this.btnBall = new System.Windows.Forms.Button();
             this.lblNext = new System.Windows.Forms.Label();
+            this.btnPresent = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -83,17 +85,41 @@ namespace _08week
             // lblNext
             // 
             this.lblNext.AutoSize = true;
-            this.lblNext.Location = new System.Drawing.Point(426, 67);
+            this.lblNext.Location = new System.Drawing.Point(546, 23);
             this.lblNext.Name = "lblNext";
             this.lblNext.Size = new System.Drawing.Size(87, 17);
             this.lblNext.TabIndex = 3;
             this.lblNext.Text = "Coming Next";
+            // 
+            // btnPresent
+            // 
+            this.btnPresent.BackColor = System.Drawing.SystemColors.Control;
+            this.btnPresent.Location = new System.Drawing.Point(346, 23);
+            this.btnPresent.Name = "btnPresent";
+            this.btnPresent.Size = new System.Drawing.Size(161, 105);
+            this.btnPresent.TabIndex = 4;
+            this.btnPresent.Text = "PRESENT";
+            this.btnPresent.UseVisualStyleBackColor = false;
+            this.btnPresent.Click += new System.EventHandler(this.btnPresent_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Yellow;
+            this.button1.Location = new System.Drawing.Point(241, 146);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPresent);
             this.Controls.Add(this.lblNext);
             this.Controls.Add(this.btnBall);
             this.Controls.Add(this.btnCar);
@@ -113,6 +139,8 @@ namespace _08week
         private System.Windows.Forms.Button btnCar;
         private System.Windows.Forms.Button btnBall;
         private System.Windows.Forms.Label lblNext;
+        private System.Windows.Forms.Button btnPresent;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -91,5 +91,21 @@ namespace _08week
             _nextToy.Top = lblNext.Top;
             this.Controls.Add(_nextToy);
         }
+
+        private void btnPresent_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
+        }
     }
 }
