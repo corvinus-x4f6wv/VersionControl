@@ -1,4 +1,5 @@
-﻿using _08week.Entities;
+﻿using _08week.Abstractions;
+using _08week.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,35 +14,40 @@ namespace _08week
 {
     public partial class Form1 : Form
     {
-        List<Ball> _balls = new List<Ball>();
+        List<Toy> _toys = new List<Toy>();
+        Toy _nextToy;
 
-        private BallFactory _ballFactory;
+        private IToyFactory _toyFactory;
 
-        public BallFactory BallFactory
+        public IToyFactory ToyFactory
         {
-            get { return _ballFactory; }
-            set { _ballFactory = value; }
+            get { return _toyFactory; }
+            set
+            {
+                _toyFactory = value;
+                DisplayNext();
+            }
         }
 
 
         public Form1()
         {
             InitializeComponent();
-            BallFactory = new BallFactory();
+            ToyFactory = new CarFactory();
         }
 
         private void createTimer_Tick(object sender, EventArgs e)
         {
-            var ball = BallFactory.CreateNew();
-            _balls.Add(ball);
-            ball.Left = -ball.Width;
-            mainPanel.Controls.Add(ball);
+           var toy = ToyFactory.CreateNew();
+            _toys.Add(toy);
+            toy.Left = -toy.Width;
+            mainPanel.Controls.Add(toy);
         }
 
         private void conveyorTimer_Tick(object sender, EventArgs e)
         {
             var lastPosition = 0;
-            foreach (var ball in _balls)
+            foreach (var ball in _toys)
             {
                 ball.MoveToy();
                 if (ball.Left > lastPosition)
@@ -50,9 +56,9 @@ namespace _08week
 
             if (lastPosition > 1000)
             {
-                var oldestBall = _balls[0];
-                mainPanel.Controls.Remove(oldestBall);
-                _balls.Remove(oldestBall);
+                var oldestToy = _toys[0];
+                mainPanel.Controls.Remove(oldestToy);
+                _toys.Remove(oldestToy);
             }
         }
 
@@ -64,6 +70,26 @@ namespace _08week
         private void conveyorTimer_Tick_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCar_Click(object sender, EventArgs e)
+        {
+            ToyFactory = new CarFactory();
+        }
+
+        private void btnBall_Click(object sender, EventArgs e)
+        {
+            ToyFactory = new BallFactory();
+        }
+        private void DisplayNext()
+        {
+            if (_nextToy != null)
+                this.Controls.Remove(_nextToy);
+
+            _nextToy = ToyFactory.CreateNew();
+            _nextToy.Left = lblNext.Left + lblNext.Width;
+            _nextToy.Top = lblNext.Top;
+            this.Controls.Add(_nextToy);
         }
     }
 }
