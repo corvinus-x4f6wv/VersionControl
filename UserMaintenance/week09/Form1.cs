@@ -23,13 +23,15 @@ namespace week09
         {
             InitializeComponent();
 
-            Population = GetPopulation(@"C:\Temp\nép.csv");
-            BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
-            DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+            Population = GetPopulation(textBox1.Text);
+            BirthProbabilities = GetBirthProbabilities(textBox1.Text);
+            DeathProbabilities = GetDeathProbabilities(textBox1.Text);
 
-            dataGridView1.DataSource = Population.ToList();
+        }
 
-            for (int year = 2005; year <= 2024; year++)
+        private void Simulation()
+        {
+            for (int year = 2005; year <= numericUpDown1.Value; year++)
             {
                 for (int i = 0; i < Population.Count; i++)
                 {
@@ -143,6 +145,22 @@ namespace week09
                     Population.Add(újszülött);
                 }
             }
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            Simulation();
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            textBox1.Text = ofd.FileName;
+
         }
     }
 }
