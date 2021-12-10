@@ -63,5 +63,11 @@ foreach (var p in topPerformers)
 }
     gc.Start();
 
+        gc.ResetCurrentLevel();
+gc.AddPlayer(winnerBrain.Clone());
+gc.AddPlayer();
+ga.Focus();
+gc.Start(true);
+
     }
 }
